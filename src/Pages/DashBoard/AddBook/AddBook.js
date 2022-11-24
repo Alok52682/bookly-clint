@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { authContext } from '../../../Context/AuthProvider';
 
 const AddBook = () => {
@@ -45,7 +46,20 @@ const AddBook = () => {
                         condition: data.condition,
                         sold: false,
                     }
-                    console.log(book);
+                    fetch('http://localhost:4000/books', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json',
+                            authorization: `bearer ${localStorage.getItem('Access_Token')}`
+                        },
+                        body: JSON.stringify(book)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.acknowledged) {
+                                toast.success('Book added successfully');
+                            }
+                        })
                 }
             })
     }

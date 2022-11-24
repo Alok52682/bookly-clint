@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import { useQuery } from '@tanstack/react-query'
+import { Link } from 'react-router-dom';
 
 const Category = () => {
 
@@ -18,14 +19,14 @@ const Category = () => {
                     categories && categories.map(category => {
                         return (
                             <div key={category._id} className='md:p-5 cursor-pointer h-full'>
-                                <div className='flex flex-col border rounded-lg w-full h-full'>
+                                <Link to={`/category/${category._id}`} className='flex flex-col border rounded-lg w-full h-full'>
                                     <div className='m-4 flex justify-center items-center h-4/5'>
                                         <img src={category.image} className='w-full' alt="" />
                                     </div>
                                     <div className='border-t p-2 flex justify-center items-center gap-1 bg-red-600 text-white hover:text-red-600 hover:bg-slate-900 rounded-b-lg h-1/5'>
                                         <h2 className='text-xl font-semibold'>{category.name}</h2> <FaArrowRight />
                                     </div>
-                                </div>
+                                </Link>
                             </div>
                         )
                     })

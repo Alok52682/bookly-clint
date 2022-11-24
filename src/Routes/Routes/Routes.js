@@ -5,6 +5,7 @@ import AllBuyers from "../../Pages/DashBoard/AllBuyer/AllBuyers";
 import AllSeler from "../../Pages/DashBoard/AllSeler/AllSeler";
 import DashBoard from "../../Pages/DashBoard/DashBoard/DashBoard";
 import MyBooks from "../../Pages/DashBoard/MyBooks/MyBooks";
+import CategoryBooks from "../../Pages/Home/Category/CategoryBooks";
 import Login from "../../Pages/LogIn/Login";
 import Register from "../../Pages/Register/Register";
 import Admin from "../Admin/Admin";
@@ -25,6 +26,11 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />
+            },
+            {
+                path: '/category/:id',
+                loader: async ({ params }) => fetch(`http://localhost:4000/books/${params.id}`),
+                element: <CategoryBooks />
             },
             {
                 path: '/blogs',

@@ -1,12 +1,15 @@
 import DashboardLayout from "../../Layouts/DashboardLayout";
 import Blogs from "../../Pages/Blogs/Blogs";
+import AddBook from "../../Pages/DashBoard/AddBook/AddBook";
 import AllBuyers from "../../Pages/DashBoard/AllBuyer/AllBuyers";
 import AllSeler from "../../Pages/DashBoard/AllSeler/AllSeler";
 import DashBoard from "../../Pages/DashBoard/DashBoard/DashBoard";
+import MyBooks from "../../Pages/DashBoard/MyBooks/MyBooks";
 import Login from "../../Pages/LogIn/Login";
 import Register from "../../Pages/Register/Register";
 import Admin from "../Admin/Admin";
 import Private from '../Private/Private';
+import Seler from "../Seler/Seler";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Main } = require("../../Layouts/Main");
@@ -54,6 +57,14 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/allbuyers',
                 element: <Admin><AllBuyers /></Admin>
+            },
+            {
+                path: '/dashboard/addbook',
+                element: <Seler><AddBook /></Seler>
+            },
+            {
+                path: '/dashboard/mybooks',
+                element: <Seler><MyBooks /></Seler>
             },
         ]
     }

@@ -30,8 +30,8 @@ const DashboardLayout = () => {
                         }
                         {
                             isSeler && <>
-                                <li><Link>Add A product</Link></li>
-                                <li><Link>My Products</Link></li>
+                                <li><Link to='/dashboard/addbook'>Add A Book</Link></li>
+                                <li><Link to='/dashboard/mybooks'>My Books</Link></li>
                             </>
                         }
                         <li><Link>My orders</Link></li>

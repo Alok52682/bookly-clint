@@ -17,7 +17,7 @@ const Seler = ({ children }) => {
         return children;
     }
 
-    return <Navigate to="/" state={{ from: location }} replace></Navigate>;
+    return <Navigate to="/dashboard" state={{ from: location }} replace></Navigate>;
 };
 
 export default Seler;

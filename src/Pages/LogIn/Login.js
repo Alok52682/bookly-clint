@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { authContext } from '../../Context/AuthProvider';
 import toast from 'react-hot-toast';
@@ -8,12 +8,16 @@ const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [signInError, setSignInError] = useState('');
     const { userLogIn } = useContext(authContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const handelLogin = data => {
         setSignInError('');
         userLogIn(data.email, data.password)
             .then((result) => {
                 if (result.user) {
+                    navigate(from, { replace: true });
                     toast.success('LogIn Successfully');
                 }
             })

@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { FaArrowRight } from 'react-icons/fa';
+import { useQuery } from '@tanstack/react-query'
 
 const Category = () => {
-    const [categories, setCategories] = useState([]);
 
-    useEffect(() => {
-        fetch('http://localhost:4000/categories')
+    const { data: categories = [] } = useQuery({
+        queryKey: ['catagories'],
+        queryFn: () => fetch('http://localhost:4000/categories')
             .then(res => res.json())
-            .then(data => setCategories(data))
-    }, []);
+    });
 
     return (
         <div className='my-10 w-11/12 mx-auto p-5 border rounded-xl shadow-xl'>

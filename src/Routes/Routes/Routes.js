@@ -1,6 +1,9 @@
+import DashboardLayout from "../../Layouts/DashboardLayout";
 import Blogs from "../../Pages/Blogs/Blogs";
+import DashBoard from "../../Pages/DashBoard/DashBoard/DashBoard";
 import Login from "../../Pages/LogIn/Login";
 import Register from "../../Pages/Register/Register";
+import Private from '../Private/Private';
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Main } = require("../../Layouts/Main");
@@ -31,6 +34,17 @@ const router = createBrowserRouter([
             },
         ]
 
+    },
+    {
+        path: '/dashboard',
+        errorElement: <ErrorPage />,
+        element: <Private><DashboardLayout /></Private>,
+        children: [
+            {
+                path: '/dashboard',
+                element: <DashBoard />
+            },
+        ]
     }
 ])
 

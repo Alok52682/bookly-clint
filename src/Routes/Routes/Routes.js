@@ -1,5 +1,7 @@
 import DashboardLayout from "../../Layouts/DashboardLayout";
 import Blogs from "../../Pages/Blogs/Blogs";
+import AllBuyers from "../../Pages/DashBoard/AllBuyer/AllBuyers";
+import AllSeler from "../../Pages/DashBoard/AllSeler/AllSeler";
 import DashBoard from "../../Pages/DashBoard/DashBoard/DashBoard";
 import Login from "../../Pages/LogIn/Login";
 import Register from "../../Pages/Register/Register";
@@ -43,6 +45,14 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <DashBoard />
+            },
+            {
+                path: '/dashboard/allselers',
+                element: <AllSeler />
+            },
+            {
+                path: '/dashboard/allBuyers',
+                element: <AllBuyers />
             },
         ]
     }

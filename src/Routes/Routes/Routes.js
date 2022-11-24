@@ -5,6 +5,7 @@ import AllSeler from "../../Pages/DashBoard/AllSeler/AllSeler";
 import DashBoard from "../../Pages/DashBoard/DashBoard/DashBoard";
 import Login from "../../Pages/LogIn/Login";
 import Register from "../../Pages/Register/Register";
+import Admin from "../Admin/Admin";
 import Private from '../Private/Private';
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -48,11 +49,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/allselers',
-                element: <AllSeler />
+                element: <Admin><AllSeler /></Admin>
             },
             {
-                path: '/dashboard/allBuyers',
-                element: <AllBuyers />
+                path: '/dashboard/allbuyers',
+                element: <Admin><AllBuyers /></Admin>
             },
         ]
     }

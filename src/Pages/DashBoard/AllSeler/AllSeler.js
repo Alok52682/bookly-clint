@@ -4,7 +4,11 @@ import React from 'react';
 const AllSeler = () => {
     const { data: allSelers = [] } = useQuery({
         queryKey: ['slers'],
-        queryFn: () => fetch('http://localhost:4000/slers')
+        queryFn: () => fetch('http://localhost:4000/slers', {
+            headers: {
+                authorization: `bearer ${localStorage.getItem('Access_Token')}`
+            }
+        })
             .then(res => res.json())
     });
     return (
@@ -17,6 +21,7 @@ const AllSeler = () => {
                             <th>#</th>
                             <th>Seler Name</th>
                             <th>Seler email</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,6 +32,7 @@ const AllSeler = () => {
                                         <th>{i + 1}</th>
                                         <td>{seler.name}</td>
                                         <td>{seler.email}</td>
+                                        <td><button className='btn btn-xs btn-error'>delete</button></td>
                                     </tr>
                                 );
                             })

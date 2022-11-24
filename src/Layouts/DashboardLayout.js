@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { authContext } from '../Context/AuthProvider';
+import useAdmin from '../Hooks/UseAdmin';
+import useSeler from '../Hooks/UseSeler';
 import Navber from '../Pages/Shared/Navber/Navber';
 
 const DashboardLayout = () => {
+    const { user } = useContext(authContext);
+    const [isAdmin] = useAdmin(user?.email);
+    const [isSeler] = useSeler(user?.email);
     return (
         <div>
             <Navber />
@@ -15,12 +21,20 @@ const DashboardLayout = () => {
                 <div className="drawer-side">
                     <label htmlFor="dashboardOpener" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 bg-base-100 text-base-content">
-                        <li><Link to='/dashboard/allselers'>All Sellers</Link></li>
-                        <li><Link to='/dashboard/allBuyers'>All Buyers</Link></li>
+                        {
+                            isAdmin && <>
+                                <li><Link to='/dashboard/allselers'>All Sellers</Link></li>
+                                <li><Link to='/dashboard/allbuyers'>All Buyers</Link></li>
+                                <li><Link>Reported Items</Link></li>
+                            </>
+                        }
+                        {
+                            isSeler && <>
+                                <li><Link>Add A product</Link></li>
+                                <li><Link>My Products</Link></li>
+                            </>
+                        }
                         <li><Link>My orders</Link></li>
-                        <li><Link>Add A product</Link></li>
-                        <li><Link>My Products</Link></li>
-                        <li><Link>Reported Items</Link></li>
                     </ul>
                 </div>
             </div>

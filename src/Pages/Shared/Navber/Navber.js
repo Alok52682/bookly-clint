@@ -15,18 +15,15 @@ const Navber = () => {
             className={({ isActive }) =>
                 isActive ? 'text-slate-900' : ' text-white'
             } to='/products'>Products</NavLink></li>
-        <li className='font-semibold mr-3'><NavLink
-            className={({ isActive }) =>
-                isActive ? 'text-slate-900' : ' text-white'
-            } to='/addproduct'>Add Product</NavLink></li>
-        <li className='font-semibold mr-3'><NavLink
-            className={({ isActive }) =>
-                isActive ? 'text-slate-900' : ' text-white'
-            } to='/dashboard'>Dashboard</NavLink></li>
+
         <li className='font-semibold mr-3'><NavLink
             className={({ isActive }) =>
                 isActive ? ' text-slate-900' : ' text-white'
             } to='/blogs'>Blogs</NavLink></li>
+        <li className='font-semibold mr-3'><NavLink
+            className={({ isActive }) =>
+                isActive ? 'text-slate-900' : ' text-white'
+            } to='/dashboard'>Dashboard</NavLink></li>
         {!user?.uid ?
             <li className='font-semibold mr-3'><NavLink to='/login'
                 className={({ isActive }) =>

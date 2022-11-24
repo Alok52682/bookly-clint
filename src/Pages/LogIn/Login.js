@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import { authContext } from '../../Context/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Login = () => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const [signInError, setSignInError] = useState('');
+    const { userLogIn } = useContext(authContext);
 
     const handelLogin = data => {
-        console.log(data);
+        setSignInError('');
+        userLogIn(data.email, data.password)
+            .then((result) => {
+                if (result.user) {
+                    toast.success('LogIn Successfully');
+                }
+            })
+            .catch(error => {
+                console.log(error.message)
+                setSignInError(error.message);
+            });
     }
     return (
         <div>
@@ -29,18 +43,25 @@ const Login = () => {
                         <form onSubmit={handleSubmit(handelLogin)}>
                             <div className="mt-4">
                                 <label className="block text-gray-700 text-sm font-bold mb-2">Email Address</label>
-                                <input {...register("email")} className="bg-red-50 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="email" placeholder='Enter Email Address' required />
+                                <input {...register("email", {
+                                    required: "Email Address is required"
+                                })} className="bg-red-50 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="email" placeholder='Enter Email Address' />
+                                {errors.email && <p className='text-red-600'>{errors.email?.message}</p>}
                             </div>
                             <div className="mt-4">
                                 <div className="flex justify-between">
                                     <label className="block text-gray-700 text-sm font-bold mb-2">Password</label>
                                     {/* <Link onClick={() => handleForgetPass(email)} className="text-xs text-gray-500">Forget Password?</Link> */}
                                 </div>
-                                <input {...register("password")} className="bg-red-50 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="password" placeholder='********' required />
+                                <input {...register("password", {
+                                    required: "Password is required"
+                                })} className="bg-red-50 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="password" placeholder='********' />
+                                {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
                             </div>
                             <div className="mt-8">
                                 <button type='submit' className="btn bg-red-500 border-none hover:bg-slate-900 w-full rounded-xl">Log In</button>
                             </div>
+                            {signInError && <p className='text-red-600'>{signInError}</p>}
                         </form>
                         <div className="mt-4 flex items-center justify-between">
                             <span className="border-b w-1/5 md:w-1/4"></span>

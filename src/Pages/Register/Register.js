@@ -11,9 +11,9 @@ const Register = () => {
 
     const handelSignUp = data => {
 
+        setRegisterError('');
         createUser(data.email, data.password)
             .then(() => {
-                toast.success('User Created Successfully.');
                 const userInfo = {
                     displayName: data.name
                 }
@@ -39,7 +39,10 @@ const Register = () => {
             body: JSON.stringify(user)
         })
             .then(res => res.json())
-            .then((data) => console.log(data));
+            .then((data) => {
+                toast.success('User Created Successfully.');
+                console.log(data)
+            });
     }
     return (
         <div>

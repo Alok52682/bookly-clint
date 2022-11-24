@@ -15,10 +15,10 @@ const Navber = () => {
             className={({ isActive }) =>
                 isActive ? 'text-slate-900' : ' text-white'
             } to='/products'>Products</NavLink></li>
-        {user?.uid && <li className='font-semibold mr-3'><NavLink
+        <li className='font-semibold mr-3'><NavLink
             className={({ isActive }) =>
                 isActive ? 'text-slate-900' : ' text-white'
-            } to='/addservice'>Add Service</NavLink></li>}
+            } to='/addproduct'>Add Product</NavLink></li>
         {user?.uid && <li className='font-semibold mr-3'><NavLink
             className={({ isActive }) =>
                 isActive ? 'text-slate-900' : ' text-white'

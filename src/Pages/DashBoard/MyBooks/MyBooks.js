@@ -1,14 +1,38 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { authContext } from '../../../Context/AuthProvider';
 
 const MyBooks = () => {
     const { user } = useContext(authContext)
-    const { data: books = [] } = useQuery({
+    const { data: books = [], refetch } = useQuery({
         queryKey: ['catagories'],
-        queryFn: () => fetch(`http://localhost:4000/mybooks?email=${user.email}`)
+        queryFn: () => fetch(`http://localhost:4000/mybooks?email=${user.email}`, {
+            headers: {
+                authorization: `bearer ${localStorage.getItem('Access_Token')}`
+            }
+        })
             .then(res => res.json())
     });
+
+    const handelDelete = book => {
+        const agree = window.confirm(`Are you sure you want to delete ${book.title}?`)
+        if (agree) {
+            fetch(`http://localhost:4000/mybooks/${book._id}`, {
+                method: 'DELETE',
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('Access_Token')}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount) {
+                        toast.success(`${book.title} has been deleted.`);
+                        refetch();
+                    }
+                })
+        }
+    }
     return (
         <div>
             <h3 className='text-3xl bg-gradient-to-r from-red-600 to-slate-900 text-white p-5 font-bold text-center w-1/2 mx-auto my-5'>My Books</h3>
@@ -48,9 +72,9 @@ const MyBooks = () => {
                                         <td>
                                             {book.sold ? 'Sold' : 'Available'}
                                         </td>
-                                        <td><button className="btn btn-ghost btn-xs">Add</button></td>
+                                        <td><button className="btn btn-sm btn-success border-2">Advertise</button></td>
                                         <th>
-                                            <button className="btn btn-error btn-xs">Delete</button>
+                                            <button onClick={() => handelDelete(book)} className="btn btn-error btn-sm">Delete</button>
                                         </th>
                                     </tr>
                                 );

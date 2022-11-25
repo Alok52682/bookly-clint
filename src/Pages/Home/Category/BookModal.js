@@ -9,13 +9,14 @@ const BookModal = ({ book, setBook }) => {
         event.preventDefault();
         const form = event.target;
         const bookname = book.title;
+        const bookImage = book.bookurl;
         const username = form.username.value;
         const email = form.email.value;
         const price = form.price.value;
         const meetLocation = form.meetlocation.value;
         const phone = form.phone.value;
 
-        const booking = { bookname, username, email, meetLocation, price, phone };
+        const booking = { bookname, bookImage, username, email, meetLocation, price, phone };
         fetch(`http://localhost:4000/bookings?bookId=${book._id}`, {
             method: 'POST',
             headers: {
@@ -37,7 +38,7 @@ const BookModal = ({ book, setBook }) => {
     return (
         <>
             <input type="checkbox" id="bookModal" className="modal-toggle" />
-            <div className="modal modal-bottom sm:modal-middle">
+            <div className="modal modal-bottom sm:modal-middle mx-3">
                 <div className="modal-box">
                     {user?.email ?
                         <form onSubmit={handelBooking}>

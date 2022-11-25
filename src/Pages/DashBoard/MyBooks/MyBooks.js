@@ -33,6 +33,23 @@ const MyBooks = () => {
                 })
         }
     }
+
+    const handelAdvertise = book => {
+        fetch(`http://localhost:4000/books/${book._id}`, {
+            method: 'PUT',
+            headers: {
+                "content-type": "application/json",
+                authorization: `bearer ${localStorage.getItem('Access_Token')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount) {
+                    toast.success(`${book.title} has been advertised.`);
+                    refetch();
+                }
+            })
+    }
     return (
         <div>
             <h3 className='text-3xl bg-gradient-to-r from-red-600 to-slate-900 text-white p-5 font-bold text-center w-1/2 mx-auto my-5'>My Books</h3>
@@ -45,7 +62,6 @@ const MyBooks = () => {
                             </th>
                             <th>Product Name</th>
                             <th>Status</th>
-                            <th>Add Advertisement</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -70,9 +86,13 @@ const MyBooks = () => {
                                             </div>
                                         </td>
                                         <td>
-                                            {book.sold ? 'Sold' : 'Available'}
+                                            {
+                                                book.sold ?
+                                                    <p className='badge badge-ghost badge-lg'>Sold</p>
+                                                    :
+                                                    <button onClick={() => handelAdvertise(book)} className="btn btn-sm btn-success border-2">{book.advertise ? 'Advertised' : 'Advertise'}</button>
+                                            }
                                         </td>
-                                        <td><button className="btn btn-sm btn-success border-2">Advertise</button></td>
                                         <th>
                                             <button onClick={() => handelDelete(book)} className="btn btn-error btn-sm">Delete</button>
                                         </th>

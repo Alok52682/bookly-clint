@@ -34,7 +34,7 @@ const DashboardLayout = () => {
                                 <li><Link to='/dashboard/mybooks'>My Books</Link></li>
                             </>
                         }
-                        <li><Link>My orders</Link></li>
+                        <li><Link to='/dashboard/myorders'>My orders</Link></li>
                         <li><Link>My Wishlist</Link></li>
                     </ul>
                 </div>

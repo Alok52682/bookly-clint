@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { authContext } from '../../Context/AuthProvider';
 import toast from 'react-hot-toast';
@@ -11,9 +11,10 @@ const Register = () => {
     const [registerError, setRegisterError] = useState('');
     const [userEmailForToken, setUserEmailForToken] = useState('');
     const [token] = UseToken(userEmailForToken);
+    const navigate = useNavigate();
 
     if (token) {
-        console.log(token);
+        navigate('/');
     }
 
     const handelSignUp = data => {
@@ -37,7 +38,7 @@ const Register = () => {
 
     }
     const saveUser = (name, email, role) => {
-        const user = { name, email, role };
+        const user = { name, email, role, varify: false };
         fetch('http://localhost:4000/users', {
             method: 'POST',
             headers: {

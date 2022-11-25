@@ -4,12 +4,15 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { authContext } from '../../../Context/AuthProvider';
+// import useVerified from '../../../Hooks/UseVerified';
 
 const AddBook = () => {
     const { user } = useContext(authContext)
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
+    // const [isVerified] = useVerified(user?.email);
     const photoHosterKey = process.env.REACT_APP_Ibb_key;
+    // console.log(isVerified);
 
 
     const { data: categories = [] } = useQuery({
@@ -50,6 +53,7 @@ const AddBook = () => {
                         phone: data.phone,
                         sold: false,
                     }
+                    console.log(book);
                     fetch('http://localhost:4000/books', {
                         method: 'POST',
                         headers: {

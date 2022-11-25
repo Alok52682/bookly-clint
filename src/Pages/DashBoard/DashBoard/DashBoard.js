@@ -2,10 +2,12 @@ import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { authContext } from '../../../Context/AuthProvider';
 import useSeler from '../../../Hooks/UseSeler';
+import useVerified from '../../../Hooks/UseVerified';
 
 const DashBoard = () => {
     const { user } = useContext(authContext);
     const [isSeler] = useSeler(user?.email);
+    const [isVerified] = useVerified(user?.email);
 
     const handelVarifySeler = person => {
 
@@ -37,7 +39,7 @@ const DashBoard = () => {
             {
                 isSeler && <div className='border max-w-md mt-10 p-5 bg-red-50 rounded-xl shadow-xl'>
                     <h2 className='m-5 text-xl'>Send Seller varification request</h2>
-                    <button onClick={() => handelVarifySeler(user)} className='btn mx-5 btn-outline btn-error'>Send Request</button>
+                    <button onClick={() => handelVarifySeler(user)} className='btn mx-5 btn-outline btn-error' disabled={isVerified}>Send Request</button>
                 </div>
             }
         </div>

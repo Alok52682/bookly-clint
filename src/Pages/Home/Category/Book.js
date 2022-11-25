@@ -1,7 +1,10 @@
 import React from 'react';
+import useVerified from '../../../Hooks/UseVerified';
+import { FaCheckCircle } from 'react-icons/fa';
 
 const Book = ({ book, setBook }) => {
     const { condition, location, originalPrice, postDate, postTime, reselePrice, selerName, title, bookurl, phone, selerEmail } = book;
+    const [isVerified] = useVerified(selerEmail);
     return (
         <div className="max-w-2xl mx-auto h-full w-full">
             <div className="bg-red-50 shadow-md rounded-lg max-w-sm h-full">
@@ -13,7 +16,10 @@ const Book = ({ book, setBook }) => {
                         <p className="badge badge-ghost badge-sm">Posted at {postTime} on {postDate}</p>
                         <h2 className='md:text-lg lg:text-xl font-semibold'>{title}</h2>
                         <p className='text-sm'>Condition : {condition}</p>
-                        <p className='text-sm'>Seler: {selerName}</p>
+                        <div className='flex items-center gap-1'>
+                            <p className='text-sm'>Seler: {selerName}</p>
+                            {isVerified && <FaCheckCircle color='01AFFF' fontSize='12px' />}
+                        </div>
                         <p className='text-sm'>Phone: {phone}</p>
                         <p className='text-sm'>E-mail: {selerEmail}</p>
                         <p className='text-sm'>Location : {location}</p>

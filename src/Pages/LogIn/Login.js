@@ -8,7 +8,7 @@ import UseToken from '../../Hooks/UseToken';
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [signInError, setSignInError] = useState('');
-    const { userLogIn } = useContext(authContext);
+    const { userLogIn, signWithGoogle } = useContext(authContext);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
@@ -33,6 +33,31 @@ const Login = () => {
                 setSignInError(error.message);
             });
     }
+    const handelGoogleLogin = () => {
+        signWithGoogle()
+            .then(result => {
+                const username = result.user.displayName;
+                const email = result.user.email;
+                const role = "Buyer";
+                saveUser(username, email, role);
+            })
+            .catch(err => alert(err.messege))
+    }
+    const saveUser = (name, email, role) => {
+        const user = { name, email, role };
+        fetch('http://localhost:4000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(() => {
+                toast.success('User Created Successfully.');
+                setLoginUserEmail(email);
+            });
+    }
     return (
         <div>
             <div className='py-6'>
@@ -40,7 +65,7 @@ const Login = () => {
                     <div className="w-full p-8 lg:w-1/2 border shadow-xl rounded-xl">
                         <h2 className="text-2xl font-bold text-red-600 text-center">BookLy</h2>
                         <p className="text-xl text-gray-600 text-center">Welcome back!</p>
-                        <Link className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md bg-red-100">
+                        <Link onClick={handelGoogleLogin} className="flex items-center justify-center mt-4 text-white rounded-lg shadow-md bg-red-100">
                             <div className="md:px-4 py-3">
                                 <img src={`https://cdn-icons-png.flaticon.com/512/2991/2991148.png`} alt='Google' className='w-5' />
                             </div>

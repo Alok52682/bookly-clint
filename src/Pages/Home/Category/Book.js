@@ -1,11 +1,10 @@
 import React from 'react';
 
-const Book = ({ book }) => {
-    console.log(book);
+const Book = ({ book, setBook }) => {
     const { condition, location, originalPrice, postDate, postTime, reselePrice, selerName, title, bookurl } = book;
     return (
         <div className="max-w-2xl mx-auto h-full w-full">
-            <div className="bg-red-50 shadow-md rounded-lg max-w-sm dark:bg-gray-800 h-full dark:border-gray-700">
+            <div className="bg-red-50 shadow-md rounded-lg max-w-sm h-full">
                 <div className='h-3/5'>
                     <img className="rounded-t-lg px-8 py-3 h-full mx-auto" src={bookurl} alt='' />
                 </div>
@@ -17,13 +16,14 @@ const Book = ({ book }) => {
                         <p className='text-sm'>Seler: {selerName}</p>
                         <p className='text-sm'>Location : {location}</p>
                     </div>
-                    <div className="flex items-end justify-between">
+                    <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-sm text-gray-900 dark:text-white">Reseleprice: ${reselePrice}</p>
-                            <p className="text-sm text-gray-900 dark:text-white">Originalprice: ${originalPrice}</p>
+                            <p className="text-xs text-gray-900">Reseleprice: ${reselePrice}</p>
+                            <p className="text-xs text-gray-900">Originalprice: ${originalPrice}</p>
                         </div>
-                        <button
-                            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Book Now</button>
+                        {/* <button
+                            className="text-white bg-red-600 hover:bg-slate-900 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Book Now</button> */}
+                        <label onClick={() => setBook(book)} htmlFor="bookModal" className="text-white bg-red-600 hover:bg-slate-900 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center" >Book Now</label>
                     </div>
                 </div>
             </div>

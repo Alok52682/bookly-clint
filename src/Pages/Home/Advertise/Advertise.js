@@ -8,8 +8,8 @@ const Advertise = () => {
             .then(res => res.json())
     });
     return (
-        <div className='my-10 w-11/12 mx-auto p-5 shadow-xl rounded-xl'>
-            <h2 className='text-center text-5xl font-bold mb-3'>Advertisements</h2>
+        <div className='my-10 w-11/12 mx-auto p-5 shadow-xl border rounded-xl'>
+            <h2 className='text-center text-5xl font-bold mb-3 text-red-600'>Advertisements</h2>
             <div className='grid lg:grid-cols-3 border-t-2 pt-3'>
                 {
                     advertises && advertises.map(advertise => {

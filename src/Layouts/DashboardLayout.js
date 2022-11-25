@@ -12,7 +12,6 @@ const DashboardLayout = () => {
     return (
         <div>
             <Navber />
-
             <div className="drawer drawer-mobile">
                 <input id="dashboardOpener" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
@@ -25,6 +24,7 @@ const DashboardLayout = () => {
                             isAdmin && <>
                                 <li><Link to='/dashboard/allselers'>All Sellers</Link></li>
                                 <li><Link to='/dashboard/allbuyers'>All Buyers</Link></li>
+                                <li><Link to='/dashboard/requests'>Requests</Link></li>
                                 <li><Link>Reported Items</Link></li>
                             </>
                         }

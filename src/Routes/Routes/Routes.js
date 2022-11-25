@@ -6,6 +6,7 @@ import AllSeler from "../../Pages/DashBoard/AllSeler/AllSeler";
 import DashBoard from "../../Pages/DashBoard/DashBoard/DashBoard";
 import MyBooks from "../../Pages/DashBoard/MyBooks/MyBooks";
 import MyOrders from "../../Pages/DashBoard/MyOrders/MyOrders";
+import Requests from "../../Pages/DashBoard/Requests/Requests";
 import CategoryBooks from "../../Pages/Home/Category/CategoryBooks";
 import Login from "../../Pages/LogIn/Login";
 import Register from "../../Pages/Register/Register";
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
+                element: <Home />
+            },
+            {
+                path: '/home',
                 element: <Home />
             },
             {
@@ -64,6 +69,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/allbuyers',
                 element: <Admin><AllBuyers /></Admin>
+            },
+            {
+                path: '/dashboard/requests',
+                element: <Admin><Requests /></Admin>
             },
             {
                 path: '/dashboard/addbook',

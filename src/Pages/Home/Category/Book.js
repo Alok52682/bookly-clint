@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Book = ({ book, setBook }) => {
-    const { condition, location, originalPrice, postDate, postTime, reselePrice, selerName, title, bookurl } = book;
+    const { condition, location, originalPrice, postDate, postTime, reselePrice, selerName, title, bookurl, phone, selerEmail } = book;
     return (
         <div className="max-w-2xl mx-auto h-full w-full">
             <div className="bg-red-50 shadow-md rounded-lg max-w-sm h-full">
@@ -14,6 +14,8 @@ const Book = ({ book, setBook }) => {
                         <h2 className='md:text-lg lg:text-xl font-semibold'>{title}</h2>
                         <p className='text-sm'>Condition : {condition}</p>
                         <p className='text-sm'>Seler: {selerName}</p>
+                        <p className='text-sm'>Phone: {phone}</p>
+                        <p className='text-sm'>E-mail: {selerEmail}</p>
                         <p className='text-sm'>Location : {location}</p>
                     </div>
                     <div className="flex items-center justify-between">

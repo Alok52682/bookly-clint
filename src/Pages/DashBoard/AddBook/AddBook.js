@@ -2,11 +2,13 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { authContext } from '../../../Context/AuthProvider';
 
 const AddBook = () => {
     const { user } = useContext(authContext)
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate();
     const photoHosterKey = process.env.REACT_APP_Ibb_key;
 
 
@@ -38,12 +40,14 @@ const AddBook = () => {
                         postDate,
                         postTime,
                         selerName: data.selerName,
+                        selerEmail: data.email,
                         title: data.name,
                         originalPrice: data.originalPrice,
                         reselePrice: data.reselePrice,
                         location: data.location,
                         categoryId: data.categoryId,
                         condition: data.condition,
+                        phone: data.phone,
                         sold: false,
                     }
                     fetch('http://localhost:4000/books', {
@@ -58,6 +62,7 @@ const AddBook = () => {
                         .then(data => {
                             if (data.acknowledged) {
                                 toast.success('Book added successfully');
+                                navigate('/dashboard/mybooks');
                             }
                         })
                 }
@@ -105,6 +110,13 @@ const AddBook = () => {
                         {errors.originalPrice && <p className='text-red-500'>{errors.originalPrice.message}</p>}
                     </div>
                     <div className="mt-4">
+                        <label className="block text-gray-700 text-sm font-bold mb-2">Phone</label>
+                        <input {...register("phone", {
+                            required: "Phone Number is Required"
+                        })} className="bg-red-50 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="number" placeholder='Phone Number' />
+                        {errors.phone && <p className='text-red-500'>{errors.phone.message}</p>}
+                    </div>
+                    <div className="mt-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">Category</label>
                         <select {...register("categoryId", { required: true })} className="select select-bordered w-full bg-red-50">
                             {
@@ -116,8 +128,8 @@ const AddBook = () => {
                         <label className="block text-gray-700 text-sm font-bold mb-2">Condition</label>
                         <select {...register("condition", { required: true })} className="select select-bordered w-full bg-red-50">
                             <option value="Good">Good</option>
-                            <option value="Average">Average</option>
-                            <option value="Not Bad">Not Bad</option>
+                            <option value="Axcellent">Excellent</option>
+                            <option value="Fair">Fair</option>
                         </select>
                     </div>
                     <div className="mt-4">

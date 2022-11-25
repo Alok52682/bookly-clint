@@ -35,6 +35,7 @@ const DashboardLayout = () => {
                             </>
                         }
                         <li><Link>My orders</Link></li>
+                        <li><Link>My Wishlist</Link></li>
                     </ul>
                 </div>
             </div>

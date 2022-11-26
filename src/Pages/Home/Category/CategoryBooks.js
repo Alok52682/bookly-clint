@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigation } from 'react-router-dom';
 import Book from './Book';
 import BookModal from './BookModal';
 import Loading from '../../Shared/Loading/Loading';
 
 const CategoryBooks = () => {
     const books = useLoaderData();
+    const navigation = useNavigation();
     const [book, setBook] = useState({});
 
-    if (!books) {
+    if (navigation.state === "loading") {
         return <Loading />
     }
 

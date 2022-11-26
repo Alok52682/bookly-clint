@@ -6,6 +6,8 @@ import AllSeler from "../../Pages/DashBoard/AllSeler/AllSeler";
 import DashBoard from "../../Pages/DashBoard/DashBoard/DashBoard";
 import MyBooks from "../../Pages/DashBoard/MyBooks/MyBooks";
 import MyOrders from "../../Pages/DashBoard/MyOrders/MyOrders";
+import Pay from "../../Pages/DashBoard/MyOrders/Pay";
+import Reports from "../../Pages/DashBoard/Reports/Reports";
 import Requests from "../../Pages/DashBoard/Requests/Requests";
 import CategoryBooks from "../../Pages/Home/Category/CategoryBooks";
 import Login from "../../Pages/LogIn/Login";
@@ -75,6 +77,10 @@ const router = createBrowserRouter([
                 element: <Admin><Requests /></Admin>
             },
             {
+                path: '/dashboard/reports',
+                element: <Admin><Reports /></Admin>
+            },
+            {
                 path: '/dashboard/addbook',
                 element: <Seler><AddBook /></Seler>
             },
@@ -86,6 +92,11 @@ const router = createBrowserRouter([
                 path: '/dashboard/myorders',
                 element: <MyOrders />
             },
+            {
+                path: '/dashboard/pay/:id',
+                loader: async ({ params }) => fetch(`http://localhost:4000/myorders/${params.id}`),
+                element: <Pay />
+            }
         ]
     }
 ])

@@ -1,10 +1,33 @@
 import React from 'react';
 import useVerified from '../../../Hooks/UseVerified';
-import { FaCheckCircle } from 'react-icons/fa';
+import { FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
+import toast from 'react-hot-toast';
 
 const Book = ({ book, setBook }) => {
     const { condition, location, originalPrice, postDate, postTime, reselePrice, selerName, title, bookurl, phone, selerEmail } = book;
     const [isVerified] = useVerified(selerEmail);
+
+    const handelReport = reportedBook => {
+        const reportedBookInfo = {
+            bookId: reportedBook._id,
+            bookName: reportedBook.title,
+            thumbnail: reportedBook.bookurl,
+            deleted: false
+        }
+        fetch('http://localhost:4000/reports', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(reportedBookInfo)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success('Book has been reported');
+                }
+            })
+    }
     return (
         <div className="max-w-2xl mx-auto h-full w-full">
             <div className="bg-red-50 shadow-md rounded-lg max-w-sm h-full">
@@ -12,6 +35,7 @@ const Book = ({ book, setBook }) => {
                     <img className="rounded-t-lg px-8 py-3 h-full mx-auto" src={bookurl} alt='' />
                 </div>
                 <div className="px-3 pb-5 h-2/5">
+                    <button onClick={() => handelReport(book)} title='Report Item'><FaExclamationCircle /> </button>
                     <div className='mb-3'>
                         <p className="badge badge-ghost badge-sm">Posted at {postTime} on {postDate}</p>
                         <h2 className='md:text-lg lg:text-xl font-semibold'>{title}</h2>

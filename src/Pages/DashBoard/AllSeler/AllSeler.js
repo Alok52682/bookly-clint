@@ -30,6 +30,25 @@ const AllSeler = () => {
                 })
         }
     }
+    const handelVarified = slr => {
+        const agree = window.confirm(`Are you sure you want to varify ${slr.name}?`);
+
+        if (agree) {
+            fetch(`http://localhost:4000/users/${slr._id}`, {
+                method: 'PUT',
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('Access_Token')}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.modifiedCount) {
+                        toast.success('Varify successfully');
+                        refetch();
+                    }
+                })
+        }
+    }
     return (
         <div>
             <h3 className='text-3xl bg-gradient-to-r from-red-600 to-slate-900 text-white p-5 font-bold text-center w-1/2 mx-auto my-5'>All Selers</h3>
@@ -40,6 +59,7 @@ const AllSeler = () => {
                             <th>#</th>
                             <th>Seler Name</th>
                             <th>Seler email</th>
+                            <th>Seler varify</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -51,6 +71,13 @@ const AllSeler = () => {
                                         <th>{i + 1}</th>
                                         <td>{seler.name}</td>
                                         <td>{seler.email}</td>
+                                        <td>
+                                            {
+                                                seler.varify ? <p className='badge badge-ghost badge-sm'>varified</p>
+                                                    :
+                                                    <button onClick={() => handelVarified(seler)} className='btn btn-xs btn-success'>Verify</button>
+                                            }
+                                        </td>
                                         <td><button onClick={() => handelDeleteSeller(seler)} className='btn btn-xs btn-error'>delete</button></td>
                                     </tr>
                                 );

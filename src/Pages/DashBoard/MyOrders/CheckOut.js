@@ -62,6 +62,7 @@ const CheckOut = ({ order }) => {
             setCardError(confirmationError.message);
             return;
         }
+        // console.log(paymentIntent);
         if (paymentIntent.status === "succeeded") {
             const payment = {
                 transId: paymentIntent.id,
@@ -69,7 +70,23 @@ const CheckOut = ({ order }) => {
                 price,
                 orderId: _id
             }
-            console.log(payment);
+            console.log(paymentIntent);
+            fetch('http://localhost:4000/transaction', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    authorization: `bearer ${localStorage.getItem('Access_Token')}`
+                },
+                body: JSON.stringify(payment)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.insertedId) {
+                        setSuccess('Your payment has been completed');
+                        setTransId(paymentIntent.id);
+                    }
+                })
         }
         setProcessing(false);
     }

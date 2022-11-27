@@ -1,19 +1,29 @@
-import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { authContext } from '../../../Context/AuthProvider';
+import axios from 'axios';
+import Loading from '../../Shared/Loading/Loading';
 
 const MyBooks = () => {
-    const { user } = useContext(authContext)
-    const { data: books = [], refetch } = useQuery({
-        queryKey: ['catagories'],
-        queryFn: () => fetch(`http://localhost:4000/mybooks?email=${user.email}`, {
+    const { user } = useContext(authContext);
+    const [books, setBooks] = useState([]);
+    const [refresh, setRefresh] = useState(false);
+
+    useEffect(() => {
+        // fetch(`http://localhost:4000/mybooks?email=${user.email}`, {
+        //     headers: {
+        //         authorization: `bearer ${localStorage.getItem('Access_Token')}`
+        //     }
+        // })
+        //     .then(res => res.json())
+        //     .then(data => setBooks(data))
+        axios.get(`http://localhost:4000/mybooks?email=${user.email}`, {
             headers: {
                 authorization: `bearer ${localStorage.getItem('Access_Token')}`
             }
         })
-            .then(res => res.json())
-    });
+            .then(data => setBooks(data.data))
+    }, [user?.email, refresh]);
 
     const handelDelete = book => {
         const agree = window.confirm(`Are you sure you want to delete ${book.title}?`)
@@ -28,7 +38,7 @@ const MyBooks = () => {
                 .then(data => {
                     if (data.deletedCount) {
                         toast.success(`${book.title} has been deleted.`);
-                        refetch();
+                        setRefresh(!refresh);
                     }
                 })
         }
@@ -46,9 +56,12 @@ const MyBooks = () => {
             .then(data => {
                 if (data.modifiedCount) {
                     toast.success(`${book.title} has been advertised.`);
-                    refetch();
+                    setRefresh(!refresh);
                 }
             })
+    }
+    if (books?.length === 0) {
+        return <Loading />
     }
     return (
         <div>

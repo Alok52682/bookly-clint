@@ -40,7 +40,7 @@ const Requests = () => {
 
             <div className='grid md:grid-cols-2 gap-3 mt-10'>
                 <div>
-                    <h2 className='text-center text-2xl my-4'>Seller Varification Requests</h2>
+                    <h2 className='text-center text-xl lg:text-2xl my-4'>Seller Varification Requests</h2>
                     <div className="overflow-x-auto">
                         <table className="table w-full">
                             <thead>

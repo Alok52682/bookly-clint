@@ -75,7 +75,7 @@ const AddBook = () => {
     return (
         <div className="flex overflow-hidden mx-auto max-w-sm lg:max-w-6xl gap-4 items-center justify-center p-10">
             <div className="w-full p-8 lg:w-1/2 border shadow-xl rounded-xl">
-                <h3 className='text-3xl bg-gradient-to-r from-red-600 to-slate-900 text-white p-5 font-bold text-center w-1/2 mx-auto my-5'>Add A Book</h3>
+                <h3 className='text-2xl lg:text-3xl bg-gradient-to-r from-red-600 to-slate-900 text-white p-5 font-bold text-center lg:w-1/2 mx-auto my-5'>Add A Book</h3>
                 <form onSubmit={handleSubmit(handelAddBook)}>
                     <div className="mt-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">Bookname</label>

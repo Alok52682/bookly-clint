@@ -8,7 +8,7 @@ import UseToken from '../../Hooks/UseToken';
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [signInError, setSignInError] = useState('');
-    const { userLogIn, signWithGoogle } = useContext(authContext);
+    const { userLogIn, signWithGoogle, handleForgetPass } = useContext(authContext);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
@@ -87,7 +87,7 @@ const Login = () => {
                             <div className="mt-4">
                                 <div className="flex justify-between">
                                     <label className="block text-gray-700 text-sm font-bold mb-2">Password</label>
-                                    {/* <Link onClick={() => handleForgetPass(email)} className="text-xs text-gray-500">Forget Password?</Link> */}
+                                    <Link onClick={() => handleForgetPass(loginUserEmail)} className="text-xs text-gray-500">Forget Password?</Link>
                                 </div>
                                 <input {...register("password", {
                                     required: "Password is required"

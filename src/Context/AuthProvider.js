@@ -34,9 +34,9 @@ const AuthProvider = ({ children }) => {
     }
     // forget password
     const handleForgetPass = (userEmail) => {
-        if (!userEmail) {
-            alert('Please enter your email!');
-            return
+        if (userEmail === '') {
+            alert('Please enter your email to forget password!');
+            return;
         }
         sendPasswordResetEmail(auth, userEmail)
             .then(() => {

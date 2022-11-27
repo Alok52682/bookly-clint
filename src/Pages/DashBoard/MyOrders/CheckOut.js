@@ -85,6 +85,7 @@ const CheckOut = ({ order }) => {
                     if (data.insertedId) {
                         setSuccess('Your payment has been completed');
                         setTransId(paymentIntent.id);
+                        toast.success('Payment Successfull!');
                     }
                 })
         }

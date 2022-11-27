@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLoaderData, useNavigation } from 'react-router-dom';
 import Book from './Book';
 import BookModal from './BookModal';
 import Loading from '../../Shared/Loading/Loading';
+import { authContext } from '../../../Context/AuthProvider';
 
 const CategoryBooks = () => {
+    const { user } = useContext(authContext);
     const books = useLoaderData();
     const navigation = useNavigation();
     const [book, setBook] = useState({});
 
-    if (navigation.state === "loading") {
+
+    if (navigation.state === "loading" && !user?.email) {
         return <Loading />
     }
 

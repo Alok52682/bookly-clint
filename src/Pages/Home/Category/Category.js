@@ -14,7 +14,7 @@ const Category = () => {
     return (
         <div className='my-10 w-11/12 mx-auto p-5 border rounded-xl shadow-xl'>
             <h2 className='text-3xl text-slate-900 font-semibold'>Categories</h2>
-            <div className='grid grid-cols-2 gap-3 md:grid-cols-6 items-center justify-around bg-white p-5'>
+            <div className='grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6 items-center justify-around bg-white p-5'>
                 {
                     categories && categories.map(category => {
                         return (

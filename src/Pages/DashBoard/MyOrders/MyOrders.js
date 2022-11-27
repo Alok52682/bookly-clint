@@ -17,7 +17,7 @@ const MyOrders = () => {
     return (
         <div>
             <h3 className='text-2xl lg:text-3xl bg-gradient-to-r from-red-600 to-slate-900 text-white p-5 font-bold text-center w-9/12 lg:w-1/2 mx-auto my-5'>My Orders : {myorders?.length}</h3>
-            <div className="overflow-x-auto w-full">
+            <div className="overflow-x-auto w-9/12 mx-auto">
                 <table className="table w-full">
                     <thead>
                         <tr>

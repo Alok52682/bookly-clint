@@ -2,9 +2,13 @@ import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { authContext } from '../../../Context/AuthProvider';
+import useAdmin from '../../../Hooks/UseAdmin';
+import useSeler from '../../../Hooks/UseSeler';
 
 const BookModal = ({ book, setBook }) => {
     const { user } = useContext(authContext);
+    const [isAdmin] = useAdmin(user?.email);
+    const [isSeler] = useSeler(user?.email);
     const handelBooking = event => {
         event.preventDefault();
         const form = event.target;
@@ -67,7 +71,9 @@ const BookModal = ({ book, setBook }) => {
                                 <input name="phone" className="bg-red-50 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="text" placeholder='Enter Contract Number' required />
                             </div>
                             <div className="mt-8">
-                                <button type='submit' className="btn bg-red-500 border-none hover:bg-slate-900 w-full rounded-xl">Book Now</button>
+                                {isAdmin || isSeler ?
+                                    <p className='text-center text-error'>Only buyer can buye books</p>
+                                    : <button type='submit' className="btn bg-red-500 border-none hover:bg-slate-900 w-full rounded-xl">Book Now</button>}
                             </div>
                         </form>
                         :

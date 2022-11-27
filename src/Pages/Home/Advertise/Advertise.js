@@ -10,11 +10,11 @@ const Advertise = () => {
     return (
         <div className={`my-10 w-11/12 mx-auto p-5 shadow-xl border rounded-xl ${advertises.length > 0 ? 'block' : 'hidden'}`}>
             <h2 className='text-center text-5xl font-bold mb-3 text-red-600'>Advertisements</h2>
-            <div className='grid lg:grid-cols-3 border-t-2 pt-3 gap-3'>
+            <div className='grid md:grid-cols-2 lg:grid-cols-3 border-t-2 pt-3 gap-3'>
                 {
                     advertises && advertises.map(advertise => {
                         return (
-                            <div key={advertise._id} className="max-w-2xl mx-auto h-full w-full">
+                            <div key={advertise._id} className="max-w-2xl mx-auto h-full">
                                 <div className="bg-red-50 shadow-md rounded-lg max-w-sm h-full">
                                     <div className='h-4/5'>
                                         <img className="rounded-t-lg px-8 py-3 h-full mx-auto" src={advertise.bookurl} alt='' />

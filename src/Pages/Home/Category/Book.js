@@ -30,11 +30,11 @@ const Book = ({ book, setBook }) => {
     }
     return (
         <div className="max-w-2xl mx-auto h-full w-full">
-            <div className="bg-red-50 shadow-md rounded-lg max-w-sm h-full">
-                <div className='h-7/12'>
+            <div className="bg-red-50 shadow-md rounded-lg h-full">
+                <div className='h-1/2'>
                     <img className="rounded-t-lg px-8 py-3 h-full mx-auto" src={bookurl} alt='' />
                 </div>
-                <div className="px-3 pb-5 h-5/12">
+                <div className="px-3 pb-5 h-1/2">
                     <button onClick={() => handelReport(book)} title='Report Item'><FaExclamationCircle /> </button>
                     <div className='mb-3'>
                         <p className="badge badge-ghost badge-sm">Posted at {postTime} on {postDate}</p>
@@ -52,10 +52,7 @@ const Book = ({ book, setBook }) => {
                         <div>
                             <p className="text-xs text-gray-900">Reseleprice: ${reselePrice}</p>
                             <p className="text-xs text-gray-900">Originalprice: ${originalPrice}</p>
-                        </div>
-                        {/* <button
-                            className="text-white bg-red-600 hover:bg-slate-900 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Book Now</button> */}
-                        <label onClick={() => setBook(book)} htmlFor="bookModal" className="text-white bg-red-600 hover:bg-slate-900 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center" >Book Now</label>
+                        </div><label onClick={() => setBook(book)} htmlFor="bookModal" className="text-white bg-red-600 hover:bg-slate-900 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center" >Book Now</label>
                     </div>
                 </div>
             </div>

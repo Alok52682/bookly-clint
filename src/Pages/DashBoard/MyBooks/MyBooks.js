@@ -10,14 +10,14 @@ const MyBooks = () => {
     const [refresh, setRefresh] = useState(false);
 
     useEffect(() => {
-        // fetch(`http://localhost:4000/mybooks?email=${user.email}`, {
+        // fetch(`https://b612-used-products-resale-server-side-green.vercel.app/mybooks?email=${user.email}`, {
         //     headers: {
         //         authorization: `bearer ${localStorage.getItem('Access_Token')}`
         //     }
         // })
         //     .then(res => res.json())
         //     .then(data => setBooks(data))
-        axios.get(`http://localhost:4000/mybooks?email=${user.email}`, {
+        axios.get(`https://b612-used-products-resale-server-side-green.vercel.app/mybooks?email=${user.email}`, {
             headers: {
                 authorization: `bearer ${localStorage.getItem('Access_Token')}`
             }
@@ -28,7 +28,7 @@ const MyBooks = () => {
     const handelDelete = book => {
         const agree = window.confirm(`Are you sure you want to delete ${book.title}?`)
         if (agree) {
-            fetch(`http://localhost:4000/mybooks/${book._id}`, {
+            fetch(`https://b612-used-products-resale-server-side-green.vercel.app/mybooks/${book._id}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('Access_Token')}`
@@ -45,7 +45,7 @@ const MyBooks = () => {
     }
 
     const handelAdvertise = book => {
-        fetch(`http://localhost:4000/books/${book._id}`, {
+        fetch(`https://b612-used-products-resale-server-side-green.vercel.app/books/${book._id}`, {
             method: 'PUT',
             headers: {
                 "content-type": "application/json",
@@ -67,7 +67,7 @@ const MyBooks = () => {
         <div>
             <h3 className='text-3xl bg-gradient-to-r from-red-600 to-slate-900 text-white p-5 font-bold text-center w-1/2 mx-auto my-5'>My Books</h3>
             <div className="overflow-x-auto w-full">
-                <table className="table w-full">
+                <table className="table w-9/12 mx-auto">
                     <thead>
                         <tr>
                             <th>

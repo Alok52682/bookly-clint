@@ -17,7 +17,7 @@ const BookModal = ({ book, setBook }) => {
         const phone = form.phone.value;
 
         const booking = { bookname, bookImage, username, email, meetLocation, price, phone };
-        fetch(`http://localhost:4000/bookings?bookId=${book._id}`, {
+        fetch(`https://b612-used-products-resale-server-side-green.vercel.app/bookings?bookId=${book._id}`, {
             method: 'POST',
             headers: {
                 "content-type": "application/json",

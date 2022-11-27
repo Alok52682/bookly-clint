@@ -14,7 +14,7 @@ const Book = ({ book, setBook }) => {
             thumbnail: reportedBook.bookurl,
             deleted: false
         }
-        fetch('http://localhost:4000/reports', {
+        fetch('https://b612-used-products-resale-server-side-green.vercel.app/reports', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -31,10 +31,10 @@ const Book = ({ book, setBook }) => {
     return (
         <div className="max-w-2xl mx-auto h-full w-full">
             <div className="bg-red-50 shadow-md rounded-lg max-w-sm h-full">
-                <div className='h-3/5'>
+                <div className='h-7/12'>
                     <img className="rounded-t-lg px-8 py-3 h-full mx-auto" src={bookurl} alt='' />
                 </div>
-                <div className="px-3 pb-5 h-2/5">
+                <div className="px-3 pb-5 h-5/12">
                     <button onClick={() => handelReport(book)} title='Report Item'><FaExclamationCircle /> </button>
                     <div className='mb-3'>
                         <p className="badge badge-ghost badge-sm">Posted at {postTime} on {postDate}</p>

@@ -17,7 +17,7 @@ const AddBook = () => {
 
     const { data: categories = [] } = useQuery({
         queryKey: ['catagories'],
-        queryFn: () => fetch('http://localhost:4000/categories')
+        queryFn: () => fetch('https://b612-used-products-resale-server-side-green.vercel.app/categories')
             .then(res => res.json())
     });
 
@@ -54,7 +54,7 @@ const AddBook = () => {
                         sold: false,
                     }
                     console.log(book);
-                    fetch('http://localhost:4000/books', {
+                    fetch('https://b612-used-products-resale-server-side-green.vercel.app/books', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

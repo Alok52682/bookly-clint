@@ -4,7 +4,7 @@ import React from 'react';
 const Advertise = () => {
     const { data: advertises = [] } = useQuery({
         queryKey: ['advertised'],
-        queryFn: () => fetch('http://localhost:4000/advertised')
+        queryFn: () => fetch('https://b612-used-products-resale-server-side-green.vercel.app/advertised')
             .then(res => res.json())
     });
     return (

@@ -6,7 +6,7 @@ const Reports = () => {
 
     const { data: reports = [], refetch } = useQuery({
         queryKey: ['reports'],
-        queryFn: () => fetch('http://localhost:4000/reports', {
+        queryFn: () => fetch('https://b612-used-products-resale-server-side-green.vercel.app/reports', {
             headers: {
                 authorization: `bearer ${localStorage.getItem('Access_Token')}`
             }
@@ -16,7 +16,7 @@ const Reports = () => {
     const handelDeleteReport = reportedItem => {
         const agree = window.confirm(`Are you sure you want to delete ${reportedItem.bookName}?`)
         if (agree) {
-            fetch(`http://localhost:4000/reports`, {
+            fetch(`https://b612-used-products-resale-server-side-green.vercel.app/reports`, {
                 method: 'PUT',
                 headers: {
                     "content-type": "application/json",

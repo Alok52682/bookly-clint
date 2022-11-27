@@ -13,7 +13,7 @@ const CheckOut = ({ order }) => {
     const [processing, setProcessing] = useState(false);
 
     useEffect(() => {
-        fetch("http://localhost:4000/create-payment-intent", {
+        fetch("https://b612-used-products-resale-server-side-green.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -71,7 +71,7 @@ const CheckOut = ({ order }) => {
                 orderId: _id
             }
             console.log(paymentIntent);
-            fetch('http://localhost:4000/transaction', {
+            fetch('https://b612-used-products-resale-server-side-green.vercel.app/transaction', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

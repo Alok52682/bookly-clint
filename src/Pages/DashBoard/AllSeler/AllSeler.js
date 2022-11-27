@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 const AllSeler = () => {
     const { data: allSelers = [], refetch } = useQuery({
         queryKey: ['slers'],
-        queryFn: () => fetch('http://localhost:4000/slers', {
+        queryFn: () => fetch('https://b612-used-products-resale-server-side-green.vercel.app/slers', {
             headers: {
                 authorization: `bearer ${localStorage.getItem('Access_Token')}`
             }
@@ -15,7 +15,7 @@ const AllSeler = () => {
     const handelDeleteSeller = seller => {
         const agree = window.confirm(`Are you sure you want to delete ${seller.name}?`)
         if (agree) {
-            fetch(`http://localhost:4000/users/${seller._id}`, {
+            fetch(`https://b612-used-products-resale-server-side-green.vercel.app/users/${seller._id}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('Access_Token')}`
@@ -34,7 +34,7 @@ const AllSeler = () => {
         const agree = window.confirm(`Are you sure you want to varify ${slr.name}?`);
 
         if (agree) {
-            fetch(`http://localhost:4000/users/${slr._id}`, {
+            fetch(`https://b612-used-products-resale-server-side-green.vercel.app/users/${slr._id}`, {
                 method: 'PUT',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('Access_Token')}`

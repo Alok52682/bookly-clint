@@ -17,7 +17,7 @@ const DashBoard = () => {
             varify: false
         }
 
-        fetch(`http://localhost:4000/verifyselerreq`, {
+        fetch(`https://b612-used-products-resale-server-side-green.vercel.app/verifyselerreq`, {
             method: 'POST',
             headers: {
                 "content-type": "application/json",

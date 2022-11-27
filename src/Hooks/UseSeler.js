@@ -5,7 +5,7 @@ const useSeler = email => {
     const [loadingSeler, setIsLoadingSeler] = useState(true);
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:4000/users/seler?email=${email}`)
+            fetch(`https://b612-used-products-resale-server-side-green.vercel.app/users/seler?email=${email}`)
                 .then(res => res.json())
                 .then(data => {
                     setIsSeler(data.isSeler);

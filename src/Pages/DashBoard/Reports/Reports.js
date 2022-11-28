@@ -1,9 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
+import { useNavigation } from 'react-router-dom';
+import Loading from '../../Shared/Loading/Loading';
 
 const Reports = () => {
-
+    const navigation = useNavigation();
     const { data: reports = [], refetch } = useQuery({
         queryKey: ['reports'],
         queryFn: () => fetch('https://b612-used-products-resale-server-side-green.vercel.app/reports', {
@@ -32,6 +34,9 @@ const Reports = () => {
                     }
                 })
         }
+    }
+    if (navigation.state === "loading") {
+        return <Loading />
     }
     return (
         <div>

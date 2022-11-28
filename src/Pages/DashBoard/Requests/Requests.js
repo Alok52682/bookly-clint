@@ -1,10 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
+import { useNavigation } from 'react-router-dom';
+import Loading from '../../Shared/Loading/Loading';
 
 const Requests = () => {
 
-
+    const navigation = useNavigation();
     const { data: allVarifyReq = [], refetch } = useQuery({
         queryKey: ['verifyselerreq'],
         queryFn: () => fetch('https://b612-used-products-resale-server-side-green.vercel.app/verifyselerreq', {
@@ -34,6 +36,9 @@ const Requests = () => {
                     }
                 })
         }
+    }
+    if (navigation.state === "loading") {
+        return <Loading />
     }
     return (
         <div className='lg:w-9/12 mx-auto'>

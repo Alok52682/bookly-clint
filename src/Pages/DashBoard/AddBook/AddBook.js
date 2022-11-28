@@ -10,7 +10,6 @@ const AddBook = () => {
     const { user } = useContext(authContext)
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
-    // const [isVerified] = useVerified(user?.email);
     const photoHosterKey = process.env.REACT_APP_Ibb_key;
     // console.log(isVerified);
 
@@ -22,6 +21,7 @@ const AddBook = () => {
     });
 
     const handelAddBook = data => {
+        // getting time and dates
         const current = new Date();
         const postTime = current.getHours() + ':' + current.getMinutes() + ":" + current.getSeconds();
         const postDate = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;

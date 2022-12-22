@@ -9,7 +9,7 @@ const Advertise = () => {
     });
     return (
         <div className={`my-10 w-11/12 mx-auto p-5 shadow-xl border rounded-xl ${advertises.length > 0 ? 'block' : 'hidden'}`}>
-            <h2 className='text-center text-5xl font-bold mb-3 text-red-600'>Advertisements</h2>
+            <h2 className='text-center text-2xl md:text-5xl font-bold mb-3 text-red-600'>Advertisements</h2>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 border-t-2 pt-3 gap-3'>
                 {
                     advertises && advertises.map(advertise => {
